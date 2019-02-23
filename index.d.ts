@@ -176,6 +176,7 @@ declare module "react-native-maps" {
         showsPointsOfInterest?: boolean;
         showsCompass?: boolean;
         zoomEnabled?: boolean;
+        zoomTapEnabled?: boolean;
         zoomControlEnabled?: boolean;
         rotateEnabled?: boolean;
         cacheEnabled?: boolean;
@@ -288,6 +289,11 @@ declare module "react-native-maps" {
          */
         hideCallout(): void;
         /**
+         * Redraws the callout for this marker
+         * __iOS only__
+         */
+        redrawCallout(): void;
+        /**
          * Animates marker movement.
          * __Android only__
          */
@@ -307,6 +313,17 @@ declare module "react-native-maps" {
     }
 
     export class Callout extends React.Component<MapCalloutProps, any> {
+    }
+
+    // =======================================================================
+    //  CalloutSubview
+    // =======================================================================
+
+    export interface MapCalloutSubviewProps extends ViewProperties {
+        onPress?: (event: MapEvent<{ action: 'callout-inside-press' }>) => void;
+    }
+
+    export class CalloutSubview extends React.Component<MapCalloutSubviewProps, any> {
     }
 
     // =======================================================================
